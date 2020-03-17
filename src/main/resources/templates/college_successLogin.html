@@ -253,11 +253,11 @@ background: linear-gradient(to right, #D4D3DD, #EFEFBB); /* W3C, IE 10+/ Edge, F
 	 						<!-- card-1 closes -->
 	 <div class="card" id="personal2">
 	 			<div class="card-body">
-
+		<button onclick="percancel()" class="btn btn-danger float-right fa fa-close"></button><br/><br/>
         <form action="#" th:action="@{/college/save}" th:object="${colleges}"
             method="post">
  			
- 			<button onclick="percancel()" class="btn btn-danger float-right fa fa-close"></button><br/><br/>
+ 	
  			
  			<div class="row">
  				<div class="col-md-1"></div>
