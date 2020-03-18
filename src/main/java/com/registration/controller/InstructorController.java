@@ -118,11 +118,11 @@ public class InstructorController {
 		    instructor.setEnabled(false);
 		      
 		    // Generate random 36-character string token for confirmation link
-		   // instructor.setConfirmationToken(UUID.randomUUID().toString());
+		    instructor.setConfirmationToken(UUID.randomUUID().toString());
 		        
 		    instructorService.saveInstructor(instructor);
 				
-			/*String appUrl = request.getScheme() + "://" + request.getServerName();
+			String appUrl = request.getScheme() + "://" + request.getServerName();
 			
 			SimpleMailMessage registrationEmail = new SimpleMailMessage();
 			registrationEmail.setTo(instructor.getEmail());
@@ -132,7 +132,7 @@ public class InstructorController {
 			registrationEmail.setFrom("caramelitservices10@gmail.com");
 			
 			emailService.sendEmail(registrationEmail);
-			*/
+			
 			modelAndView.addObject("confirmationMessage", "A Request has been sent to Admin, please check you email regularly in your " + instructor.getEmail());
 			modelAndView.setViewName("instructor_register");
 		}
@@ -140,7 +140,7 @@ public class InstructorController {
 		return modelAndView;
 	}
 	
-	@RequestMapping(value="/instructor_approved", method = RequestMethod.GET)
+	/*@RequestMapping(value="/instructor_approved", method = RequestMethod.GET)
 	public ModelAndView showIstructorApprovalPage(ModelAndView modelAndView, Instructor instructor){
 		modelAndView.addObject("instructor", instructor);
 		modelAndView.setViewName("instructor_approved");
@@ -183,7 +183,7 @@ public class InstructorController {
 			
 		return modelAndView;
 	}
-	
+	*/
 	// Process confirmation link
 	@RequestMapping(value="/instructor_confirm", method = RequestMethod.GET)
 	public ModelAndView confirmRegistration(ModelAndView modelAndView, @RequestParam("token") String token) {

@@ -75,7 +75,7 @@
 		td:nth-of-type(11):before { content: "Employee Experience"; }
 		td:nth-of-type(12):before { content: "Company State"; }
 		td:nth-of-type(13):before { content: "Top Skills"; }
-	    td:nth-of-type(14):before { content: "Actions"; }
+	
 }
 </style>
 
@@ -109,7 +109,7 @@
                 <th role="columnheader">Employee Experience</th>
                 <th role="columnheader">Company State</th>
                 <th role="columnheader">Top Skills</th>
-                <th role="columnheader">Actions</th>
+          
             </tr>
         </thead>
         <tbody  role="rowgroup">
@@ -129,23 +129,7 @@
                 <td role="cell" th:text="${instructor.cstate}">Company State</td>
                 <td role="cell" th:text="${instructor.skills}">Top Skills</td>
                 
-                <td role="cell">
-                <form action="#" th:action="@{/instructor/instructor_approved}"
-        th:object="${instructor}" method="post">
-			<div style="display:none;">			<input type="text" th:field="*{firstName}"
-            placeholder="Last Name...." class="form-control stureg"/>
-			<input type="text" th:field="*{lastName}"
-            placeholder="Last Name...." class="form-control stureg" />
-            <input type="email" th:field="*{email}" 
-            placeholder="Email Address...." class="form-control stureg"
-            />
-               <input type="text" th:field="*{subject}" 
-            placeholder="Enter your subjects" class="form-control stureg" />
-			</div>
-			
-			
-		<button type="submit">Approve</button>
-			</form></td>
+            
             </tr>
            </tr>
         </tbody>
