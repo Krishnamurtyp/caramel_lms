@@ -118,9 +118,53 @@ public class InstructorController {
 		    instructor.setEnabled(false);
 		      
 		    // Generate random 36-character string token for confirmation link
-		    instructor.setConfirmationToken(UUID.randomUUID().toString());
+		   // instructor.setConfirmationToken(UUID.randomUUID().toString());
 		        
 		    instructorService.saveInstructor(instructor);
+				
+			/*String appUrl = request.getScheme() + "://" + request.getServerName();
+			
+			SimpleMailMessage registrationEmail = new SimpleMailMessage();
+			registrationEmail.setTo(instructor.getEmail());
+			registrationEmail.setSubject("Registration Confirmation");
+			registrationEmail.setText("To confirm your e-mail address, please click the link below:\n"
+					+ appUrl + ":8090/lms/instructor/instructor_confirm?token=" + instructor.getConfirmationToken());
+			registrationEmail.setFrom("caramelitservices10@gmail.com");
+			
+			emailService.sendEmail(registrationEmail);
+			*/
+			modelAndView.addObject("confirmationMessage", "A Request has been sent to Admin, please check you email regularly in your " + instructor.getEmail());
+			modelAndView.setViewName("instructor_register");
+		}
+			
+		return modelAndView;
+	}
+	
+	@RequestMapping(value="/instructor_approved", method = RequestMethod.GET)
+	public ModelAndView showIstructorApprovalPage(ModelAndView modelAndView, Instructor instructor){
+		modelAndView.addObject("instructor", instructor);
+		modelAndView.setViewName("instructor_approved");
+		return modelAndView;
+	}
+	
+	@RequestMapping(value = "/instructor_approved", method = RequestMethod.POST)
+	public ModelAndView processInstructorRegistrationForm(ModelAndView modelAndView, @Valid Instructor instructor, BindingResult bindingResult, HttpServletRequest request) {
+				
+		// Lookup user in database by e-mail
+		Instructor instructorExists = instructorService.findByEmail(instructor.getEmail());
+		
+		System.out.println(instructorExists);
+		
+		if (instructorExists != null) {
+			 // new instructor so we create instructor and send confirmation e-mail
+			
+			// Disable user until they click on confirmation link in email
+		    //instructor.setEnabled(false);
+		      
+		    // Generate random 36-character string token for confirmation link
+		    instructor.setConfirmationToken(UUID.randomUUID().toString());
+		        
+		  //  instructorService.saveInstructor(instructor);
 				
 			String appUrl = request.getScheme() + "://" + request.getServerName();
 			
@@ -133,8 +177,8 @@ public class InstructorController {
 			
 			emailService.sendEmail(registrationEmail);
 			
-			modelAndView.addObject("confirmationMessage", "A confirmation e-mail has been sent to " + instructor.getEmail());
-			modelAndView.setViewName("instructor_register");
+			modelAndView.addObject("confirmationMessage", "A confirmation e-mail has been sent to " );
+			modelAndView.setViewName("instructor_list");
 		}
 			
 		return modelAndView;

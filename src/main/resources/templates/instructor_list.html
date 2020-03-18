@@ -74,7 +74,8 @@
 		td:nth-of-type(10):before { content: "Role"; }
 		td:nth-of-type(11):before { content: "Employee Experience"; }
 		td:nth-of-type(12):before { content: "Company State"; }
-		Std:nth-of-type(13):before { content: "Top Skills"; }
+		td:nth-of-type(13):before { content: "Top Skills"; }
+	    td:nth-of-type(14):before { content: "Actions"; }
 }
 </style>
 
@@ -88,7 +89,10 @@
 <div align="center">
     <h3>Instructor List</h3>
     
-    <br/><br/>
+    <br/>
+        <div th:if="${confirmationMessage}" class="alert alert-success"
+          role="alert" th:text=${confirmationMessage}></div>
+    <br/>
     <table role="table"  border="2px 1px 1px 1px solid"  cellpadding="10px">
         <thead role="rowgroup" class="table table-primary table-striped">
             <tr role="row">
@@ -105,6 +109,7 @@
                 <th role="columnheader">Employee Experience</th>
                 <th role="columnheader">Company State</th>
                 <th role="columnheader">Top Skills</th>
+                <th role="columnheader">Actions</th>
             </tr>
         </thead>
         <tbody  role="rowgroup">
@@ -123,6 +128,24 @@
                 <td role="cell" th:text="${instructor.empExperience}">Employee Experience</td>
                 <td role="cell" th:text="${instructor.cstate}">Company State</td>
                 <td role="cell" th:text="${instructor.skills}">Top Skills</td>
+                
+                <td role="cell">
+                <form action="#" th:action="@{/instructor/instructor_approved}"
+        th:object="${instructor}" method="post">
+			<div style="display:none;">			<input type="text" th:field="*{firstName}"
+            placeholder="Last Name...." class="form-control stureg"/>
+			<input type="text" th:field="*{lastName}"
+            placeholder="Last Name...." class="form-control stureg" />
+            <input type="email" th:field="*{email}" 
+            placeholder="Email Address...." class="form-control stureg"
+            />
+               <input type="text" th:field="*{subject}" 
+            placeholder="Enter your subjects" class="form-control stureg" />
+			</div>
+			
+			
+		<button type="submit">Approve</button>
+			</form></td>
             </tr>
            </tr>
         </tbody>
