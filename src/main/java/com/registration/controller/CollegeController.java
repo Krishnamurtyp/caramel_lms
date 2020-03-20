@@ -110,7 +110,7 @@ public class CollegeController {
 		System.out.println(collegeExists);
 		
 		if (collegeExists != null) {
-			modelAndView.addObject("alreadyRegisteredMessage", "Oops!  There is already a user registered with the email provided.");
+			modelAndView.addObject("already Registered Message", "Oops!  There is already a user registered with the email provided.");
 			modelAndView.setViewName("college_register");
 			bindingResult.reject("email");
 		}
