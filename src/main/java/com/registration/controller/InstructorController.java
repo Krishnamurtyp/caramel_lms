@@ -133,7 +133,7 @@ public class InstructorController {
 			
 			emailService.sendEmail(registrationEmail);
 			
-			modelAndView.addObject("confirmationMessage", "Confirmation Mail Has been Sent to your" + instructor.getEmail());
+			modelAndView.addObject("confirmationMessage", "Confirmation Mail Has been Sent to Your" + instructor.getEmail());
 			modelAndView.setViewName("instructor_register");
 		}
 			
